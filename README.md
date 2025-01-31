@@ -4,10 +4,8 @@
 
 ## Project Features
 
-- The project is developed with NextJs and NextUi
-
-* Nodemailer is used for sending emails
+- The project is developed with NextJs and Material UI.
 
 ## Technologies Used Here
 
-[![My Skills](https://skillicons.dev/icons?i=html,css,nextjs,tailwind,js,)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=html,css,nextjs,tailwind,ts,)](https://skillicons.dev)
