@@ -9,8 +9,12 @@ export const ThemeButton = () => {
   const { toggleTheme, isDarkMode } = useThemeContext();
 
   return (
-    <IconButton onClick={toggleTheme} color="inherit">
-      {isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+    <IconButton onClick={toggleTheme}>
+      {isDarkMode ? (
+        <Brightness7Icon sx={{ color: "#08272C" }} />
+      ) : (
+        <Brightness4Icon sx={{ color: "#8E9361" }} />
+      )}
     </IconButton>
   );
 };

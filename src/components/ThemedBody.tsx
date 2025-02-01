@@ -9,7 +9,7 @@ const ThemedBody = ({ children }: { children: ReactNode }) => {
 
   return (
     <main
-      className={`mt-7 md:mt-0 min-h-screen bg-cover bg-center bg-no-repeat ${
+      className={`-mt-24 h-[calc(100vh-70px)] mb-5 bg-no-repeat bg-cover ${
         isLight
           ? "md:bg-[image:var(--bg-desktop)]"
           : "md:bg-[image:var(--bgDark-desktop)]"

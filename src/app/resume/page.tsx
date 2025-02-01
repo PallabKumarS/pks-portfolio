@@ -1,3 +1,10 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Resume",
+  description: "Pallab's Resume",
+};
+
 const ResumePage = () => {
   return (
     <div>

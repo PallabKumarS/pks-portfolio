@@ -10,7 +10,12 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="text-black py-4">
+    <footer
+      className="py-4"
+      style={{
+        color: "var(--footer-text)",
+      }}
+    >
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center px-4 gap-4">
         {/* Left Section */}
         <div className="order-3 md:order-1 text-lg font-light">

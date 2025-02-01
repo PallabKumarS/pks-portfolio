@@ -1,3 +1,8 @@
+export const metadata:Meta = {
+  title: "Contact",
+  description: "Pallab's Contact",
+};
+
 const ContactPage = () => {
   return (
     <div>

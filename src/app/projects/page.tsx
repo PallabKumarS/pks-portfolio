@@ -1,3 +1,8 @@
+export const metadata:Metadata = {
+  title: "Projects",
+  description: "Pallab's Projects",
+};
+
 const ProjectsPage = () => {
   return (
     <div>

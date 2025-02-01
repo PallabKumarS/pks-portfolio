@@ -1,7 +1,8 @@
 "use client";
-import { useState, createContext, useContext } from "react";
+import { useState, createContext, useContext, useEffect } from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import { lightTheme, darkTheme } from "./theme";
+import updateCSSVariables from "./utils/updateCssVariables";
 
 // Create a context for the theme
 const ThemeContext = createContext({
@@ -21,6 +22,10 @@ export const CustomThemeProvider = ({
   const toggleTheme = () => {
     setIsDarkMode((prevMode) => !prevMode);
   };
+
+  useEffect(() => {
+    updateCSSVariables(isDarkMode);
+  }, [isDarkMode]);
 
   const theme = isDarkMode ? darkTheme : lightTheme;
 

@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div className="">
       <ThemedBody>
-        <h1>main page</h1>
+        {/* <h1>main page</h1> */}
       </ThemedBody>
     </div>
   );

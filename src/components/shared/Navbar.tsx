@@ -55,6 +55,7 @@ const Navbar = () => {
                   : `/${item.toLowerCase().replace(" ", "")}`
               }
               style={{ textDecoration: "none", width: "100%" }}
+              onClick={handleDrawerToggle}
             >
               <ListItemButton sx={{ textAlign: "center" }}>
                 <ListItemText
@@ -87,6 +88,8 @@ const Navbar = () => {
         sx={{ backgroundColor: theme.palette.primary.light }}
       >
         <Toolbar className="space-x-4">
+          {/* mobile part  */}
+
           {/* mobile menu logo  */}
           <Typography
             variant="h6"
@@ -97,13 +100,10 @@ const Navbar = () => {
               color: theme.palette.primary.contrastText,
             }}
           >
-            <div className="items-center p-2 rounded-lg">
+            <div className="items-center p-1 rounded-lg">
               <div className="flex gap-1 items-center">
                 <div
-                  className="w-3 h-3 rounded-sm"
-                  style={{
-                    backgroundColor: theme.palette.primary.main,
-                  }}
+                  className={`w-3 h-3 bg-[#7927FF] rounded-sm mb-[2px]`}
                 ></div>
                 <h3
                   className={`font-semibold text-xl text-[${theme.palette.primary.contrastText}] text-nowrap`}
@@ -119,10 +119,10 @@ const Navbar = () => {
             </div>
           </Typography>
 
-          {/* mobile part  */}
-
           {/* theme toggle  */}
-          <ThemeButton />
+          <div className="md:hidden">
+            <ThemeButton />
+          </div>
 
           {/* Mobile menu button */}
           <IconButton
@@ -133,12 +133,13 @@ const Navbar = () => {
             sx={{
               mr: 2,
               display: { sm: "none" },
+              color: theme.palette.primary.main,
             }}
           >
-            <TbMenu3
-              className={`text-2xl text-[${theme.palette.primary.main}]`}
-            />
+            <TbMenu3 className={`text-2xl text-[#7927FF]`} />
           </IconButton>
+
+          {/* desktop part  */}
 
           {/*desktop logo */}
           <Typography
@@ -153,57 +154,66 @@ const Navbar = () => {
               },
             }}
           >
-            <div className="flex items-center space-x-2 p-2 rounded-lg flex-shrink-1">
-              <div
-                className={`w-3 h-3 bg-[${theme.palette.primary.main}] rounded-sm`}
-              ></div>
-              <p
-                className={`text-2xl font-semibold text-[${theme.palette.primary.contrastText}]`}
-              >
-                Pallab Kumar Sarker
-              </p>
-              <p
-                className={`text-base font-light text-[${theme.palette.primary.contrastText}]`}
-              >
-                / Web Developer
-              </p>
-              <ThemeButton />
+            <div className="flex items-center gap-x-10">
+              <div className="flex items-center gap-2">
+                <div
+                  className={`w-4 h-4 bg-[${theme.palette.primary.main}] rounded-sm`}
+                ></div>
+                <p
+                  className={`text-2xl font-semibold text-[${theme.palette.primary.contrastText}]`}
+                >
+                  Pallab Kumar Sarker
+                </p>
+                <p
+                  className={`text-xl font-light text-[${theme.palette.primary.contrastText}]`}
+                >
+                  / Web Developer
+                </p>
+              </div>
+
+              {/* theme toggle button  */}
+              <div className="hidden md:block">
+                <ThemeButton />
+              </div>
             </div>
           </Typography>
 
           {/* Desktop navigation */}
-          <Box
-            sx={{
-              display: { xs: "none", sm: "block", md: "flex" },
-              alignItems: "center",
-              flexGrow: 1,
-              gap: 4,
-            }}
-          >
-            {navItems.map((item) => (
-              <Link
-                key={item}
-                href={
-                  item === "About Me"
-                    ? "/"
-                    : `/${item.toLowerCase().replace(" ", "")}`
-                }
-                style={{ textDecoration: "none" }}
-              >
-                <Button
-                  style={
-                    (item === "About Me" && pathname === "/") ||
-                    (item !== "About Me" &&
-                      pathname === `/${item.toLowerCase().replace(" ", "")}`)
-                      ? { color: theme.palette.primary.main }
-                      : { color: theme.palette.primary.contrastText }
+          <div className="flex gap-10 justify-end">
+            <Box
+              sx={{
+                display: { xs: "none", sm: "block", md: "flex" },
+                alignItems: "center",
+                flexGrow: 1,
+                gap: 4,
+              }}
+            >
+              {navItems.map((item) => (
+                <Link
+                  key={item}
+                  href={
+                    item === "About Me"
+                      ? "/"
+                      : `/${item.toLowerCase().replace(" ", "")}`
                   }
+                  style={{ textDecoration: "none" }}
                 >
-                  {item}
-                </Button>
-              </Link>
-            ))}
-          </Box>
+                  <Button
+                    className="text-xl font-medium"
+                    style={
+                      (item === "About Me" && pathname === "/") ||
+                      (item !== "About Me" &&
+                        pathname === `/${item.toLowerCase().replace(" ", "")}`)
+                        ? { color: theme.palette.primary.main }
+                        : { color: theme.palette.primary.contrastText }
+                    }
+                  >
+                    {item}
+                  </Button>
+                </Link>
+              ))}
+            </Box>
+          </div>
         </Toolbar>
       </AppBar>
 
