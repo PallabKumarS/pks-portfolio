@@ -18,20 +18,13 @@ import Button from "@mui/material/Button";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { TbMenu3 } from "react-icons/tb";
+import { useTheme } from "@mui/material";
+import { ThemeButton } from "./ThemeButton";
 
-const activeStyle = {
-  color: "#7927FF",
-  fontWeight: "bold",
-};
-
-const inactiveStyle = {
-  color: "#000000",
-};
-
-const drawerWidth = 280;
 const navItems = ["About Me", "Resume", "Projects", "Contact"];
 
 const Navbar = () => {
+  const theme = useTheme();
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -46,13 +39,13 @@ const Navbar = () => {
       <Box sx={{ display: "flex", justifyContent: "flex-end", p: 2 }}>
         {/* close icon  */}
         <IconButton onClick={handleDrawerToggle}>
-          <CloseIcon />
+          <CloseIcon className={`text-[${theme.palette.text.primary}]`} />
         </IconButton>
       </Box>
 
       <Divider />
 
-      <List>
+      <List className="gap-7">
         {navItems.map((item) => (
           <ListItem key={item} disablePadding>
             <Link
@@ -70,8 +63,8 @@ const Navbar = () => {
                     (item === "About Me" && pathname === "/") ||
                     (item !== "About Me" &&
                       pathname === `/${item.toLowerCase().replace(" ", "")}`)
-                      ? activeStyle
-                      : inactiveStyle
+                      ? { color: theme.palette.secondary.main }
+                      : { color: theme.palette.text.primary }
                   }
                 />
               </ListItemButton>
@@ -83,55 +76,98 @@ const Navbar = () => {
   );
 
   return (
-    <Box className="bg-[#DFE2C6] mt-5">
+    <Box
+      sx={{ backgroundColor: theme.palette.primary.light, marginTop: "20px" }}
+    >
       <CssBaseline />
       <AppBar
         position="sticky"
         component="nav"
-        className="max-w-7xl mx-auto shadow-none bg-[#DFE2C6]"
+        className="container mx-auto shadow-none"
+        sx={{ backgroundColor: theme.palette.primary.light }}
       >
-        <Toolbar className="">
+        <Toolbar className="space-x-4">
           {/* mobile menu logo  */}
           <Typography
             variant="h6"
-            sx={{ my: 2, display: { sm: "none" }, flexGrow: 1 }}
+            sx={{
+              my: 2,
+              display: { sm: "none" },
+              flexGrow: 1,
+              color: theme.palette.primary.contrastText,
+            }}
           >
             <div className="items-center p-2 rounded-lg">
               <div className="flex gap-1 items-center">
-                <div className="w-3 h-3 bg-[#7927FF] rounded-sm"></div>
-                <h3 className="font-bold text-black text-nowrap">
+                <div
+                  className="w-3 h-3 rounded-sm"
+                  style={{
+                    backgroundColor: theme.palette.primary.main,
+                  }}
+                ></div>
+                <h3
+                  className={`font-semibold text-xl text-[${theme.palette.primary.contrastText}] text-nowrap`}
+                >
                   Pallab Kumar Sarker
                 </h3>
               </div>
-              <h3 className="text-black text-base font-light text-nowrap">
+              <h3
+                className={`text-[${theme.palette.primary.contrastText}] text-base font-light text-nowrap`}
+              >
                 Web Developer
               </h3>
             </div>
           </Typography>
+
+          {/* mobile part  */}
+
+          {/* theme toggle  */}
+          <ThemeButton />
+
           {/* Mobile menu button */}
           <IconButton
-            className="text-[#7927FF]"
+            className=""
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
+            sx={{
+              mr: 2,
+              display: { sm: "none" },
+            }}
           >
-            <TbMenu3 className="text-2xl" />
+            <TbMenu3
+              className={`text-2xl text-[${theme.palette.primary.main}]`}
+            />
           </IconButton>
 
-          {/*desktop logo Logo */}
+          {/*desktop logo */}
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-            className="font-semibold text-lg text-black"
+            sx={{
+              flexGrow: 1,
+              display: {
+                xs: "none",
+                sm: "block",
+                color: theme.palette.primary.contrastText,
+              },
+            }}
           >
             <div className="flex items-center space-x-2 p-2 rounded-lg flex-shrink-1">
-              <div className="w-3 h-3 bg-[#7927FF] rounded-sm"></div>
-              <span className="font-bold text-black">Pallab Kumar Sarker</span>
-              <span className="text-black text-base font-light">
+              <div
+                className={`w-3 h-3 bg-[${theme.palette.primary.main}] rounded-sm`}
+              ></div>
+              <p
+                className={`text-2xl font-semibold text-[${theme.palette.primary.contrastText}]`}
+              >
+                Pallab Kumar Sarker
+              </p>
+              <p
+                className={`text-base font-light text-[${theme.palette.primary.contrastText}]`}
+              >
                 / Web Developer
-              </span>
+              </p>
+              <ThemeButton />
             </div>
           </Typography>
 
@@ -159,8 +195,8 @@ const Navbar = () => {
                     (item === "About Me" && pathname === "/") ||
                     (item !== "About Me" &&
                       pathname === `/${item.toLowerCase().replace(" ", "")}`)
-                      ? activeStyle
-                      : inactiveStyle
+                      ? { color: theme.palette.primary.main }
+                      : { color: theme.palette.primary.contrastText }
                   }
                 >
                   {item}
@@ -177,7 +213,7 @@ const Navbar = () => {
           variant="temporary"
           PaperProps={{
             sx: {
-              backgroundColor: "#DFE2C6",
+              backgroundColor: theme.palette.background.paper,
             },
           }}
           open={mobileOpen}
@@ -187,7 +223,7 @@ const Navbar = () => {
             display: { xs: "block", sm: "none" },
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
-              width: drawerWidth,
+              width: "100%",
             },
           }}
         >
