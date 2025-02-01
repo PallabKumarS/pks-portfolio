@@ -11,13 +11,13 @@ const ThemedBody = ({ children }: { children: ReactNode }) => {
     <main
       className={`mt-7 md:mt-0 min-h-screen bg-cover bg-center bg-no-repeat ${
         isLight
-          ? "md:bg-[image:var(--bg-desktop)"
-          : "md:bg-[image:var(--bgDark-desktop)"
-      }] ${
+          ? "md:bg-[image:var(--bg-desktop)]"
+          : "md:bg-[image:var(--bgDark-desktop)]"
+      } ${
         isLight
-          ? "bg-[image:var(--bg-mobile)"
-          : "bg-[image:var(--bgDark-mobile)"
-      }]`}
+          ? "bg-[image:var(--bg-mobile)]"
+          : "bg-[image:var(--bgDark-mobile)]"
+      }`}
       style={
         {
           "--bg-desktop": `url(/desktopBackground.svg)`,
