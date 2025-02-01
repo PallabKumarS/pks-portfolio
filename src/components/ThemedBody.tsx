@@ -1,22 +1,21 @@
 "use client";
 
-import { useTheme } from "@mui/material";
 import React, { ReactNode } from "react";
+import { useThemeContext } from "./ThemeToggle";
 
 const ThemedBody = ({ children }: { children: ReactNode }) => {
-  const theme = useTheme();
-  const isLight = theme.palette.mode === "light";
+  const { isDarkMode } = useThemeContext();
 
   return (
     <main
-      className={`-mt-24 h-[calc(100vh-70px)] mb-5 bg-no-repeat bg-cover ${
-        isLight
-          ? "md:bg-[image:var(--bg-desktop)]"
-          : "md:bg-[image:var(--bgDark-desktop)]"
+      className={`h-screen mb-5 bg-no-repeat bg-cover bg-center ${
+        isDarkMode
+          ? "md:bg-[image:var(--bgDark-desktop)]"
+          : "md:bg-[image:var(--bg-desktop)]"
       } ${
-        isLight
-          ? "bg-[image:var(--bg-mobile)]"
-          : "bg-[image:var(--bgDark-mobile)]"
+        isDarkMode
+          ? "bg-[image:var(--bgDark-mobile)]"
+          : "bg-[image:var(--bg-mobile)]"
       }`}
       style={
         {

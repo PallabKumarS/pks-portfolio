@@ -1,10 +1,9 @@
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import type { Metadata } from "next";
 import "./globals.css";
 import { Jost } from "next/font/google";
 import Navbar from "@/components/shared/Navbar";
+import { ThemeProvider } from "@/components/ThemeToggle";
 import Footer from "@/components/shared/Footer";
-import { CustomThemeProvider } from "@/components/ThemeToggle";
 
 const jost = Jost({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -24,16 +23,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <CustomThemeProvider>
+    <ThemeProvider>
       <html lang="en">
-        <body className={`${jost.variable} antialiased`}>
-          <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-            <Navbar />
-            <main className="">{children}</main>
-            <Footer />
-          </AppRouterCacheProvider>
+        <body className={`${jost.className} antialiased`}>
+          <Navbar />
+          <main className="bg-background">{children}</main>
+          <Footer />
         </body>
       </html>
-    </CustomThemeProvider>
+    </ThemeProvider>
   );
 }

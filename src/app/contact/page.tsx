@@ -1,4 +1,6 @@
-export const metadata:Meta = {
+import { Metadata } from "next";
+
+export const metadata:Metadata = {
   title: "Contact",
   description: "Pallab's Contact",
 };

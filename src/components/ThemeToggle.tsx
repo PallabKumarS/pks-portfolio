@@ -1,37 +1,47 @@
 "use client";
-import { useState, createContext, useContext, useEffect } from "react";
-import { ThemeProvider } from "@mui/material/styles";
-import { lightTheme, darkTheme } from "./theme";
+
+import * as React from "react";
 import updateCSSVariables from "./utils/updateCssVariables";
 
-// Create a context for the theme
-const ThemeContext = createContext({
-  toggleTheme: () => {},
-  isDarkMode: false,
-});
+type ThemeContextType = {
+  isDarkMode: boolean;
+  toggleTheme: () => void;
+};
 
-export const useThemeContext = () => useContext(ThemeContext);
+const ThemeContext = React.createContext<ThemeContextType | undefined>(
+  undefined
+);
 
-export const CustomThemeProvider = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
+  const [isDarkMode, setIsDarkMode] = React.useState(false);
 
   const toggleTheme = () => {
     setIsDarkMode((prevMode) => !prevMode);
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
+    // Update CSS variables based on the theme
     updateCSSVariables(isDarkMode);
+
+    // Add or remove the `dark` class for Tailwind CSS dark mode
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
   }, [isDarkMode]);
 
-  const theme = isDarkMode ? darkTheme : lightTheme;
-
   return (
-    <ThemeContext.Provider value={{ toggleTheme, isDarkMode }}>
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+    <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>
+      {children}
     </ThemeContext.Provider>
   );
+};
+
+export const useThemeContext = () => {
+  const context = React.useContext(ThemeContext);
+  if (!context) {
+    throw new Error("useThemeContext must be used within a ThemeProvider");
+  }
+  return context;
 };
