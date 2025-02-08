@@ -8,7 +8,7 @@ const ThemedBody = ({ children }: { children: ReactNode }) => {
 
   return (
     <main
-      className={`h-screen mb-5 bg-no-repeat bg-cover bg-center ${
+      className={`min-h-screen mb-5 bg-no-repeat mt-8 bg-[length:100%_auto] 2xl:mt-7 xl:-mt-8 lg:-mt-32 md:-mt-48  md:bg-contain md:bg-center ${
         isDarkMode
           ? "md:bg-[image:var(--bgDark-desktop)]"
           : "md:bg-[image:var(--bg-desktop)]"

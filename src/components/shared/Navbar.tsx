@@ -56,29 +56,34 @@ const Navbar = () => {
   );
 
   return (
-    <div className={`sticky bg-nav-bg mt-5`}>
+    <div className={`sticky top-0 z-10 bg-nav-bg mt-5`}>
       <nav className="container mx-auto">
-        <div className="flex justify-between items-center p-4">
+        <div className="flex justify-between items-center p-2 md:p-4">
           {/* Mobile logo */}
-          <div className="sm:hidden flex items-center gap-2">
-            <div className="w-3 h-3 bg-[#7927FF] rounded-sm mb-1"></div>
-            <h3 className={`text-xl font-semibold text-[#171717]`}>
-              Pallab Kumar Sarker
-            </h3>
+          <div className="lg:hidden">
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 bg-[#7927FF] rounded-sm mb-1"></div>
+              <h3 className={`text-xl font-semibold text-[#171717]`}>
+                Pallab Kumar Sarker
+              </h3>
+            </div>
+            <p className={`text-base font-light text-[#171717]`}>
+              Web Developer
+            </p>
           </div>
 
-          {/* Theme toggle */}
-          <div className="md:hidden">
+          {/* mobile Theme toggle */}
+          <div className="lg:hidden">
             <ThemeButton />
           </div>
 
           {/* Mobile menu button */}
-          <button onClick={handleDrawerToggle} className="sm:hidden p-2">
+          <button onClick={handleDrawerToggle} className="md:hidden p-2">
             <TbMenu3 className="text-2xl text-[#7927FF]" />
           </button>
 
           {/* Desktop logo */}
-          <div className="hidden sm:flex items-center gap-10">
+          <div className="hidden lg:flex items-center lg:gap-x-10 md:gap-x-5 md:mr-5 lg:mr-0">
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 bg-[#7927FF] rounded-sm"></div>
               <p className={`text-2xl font-semibold text-[#171717]`}>
@@ -89,7 +94,7 @@ const Navbar = () => {
               </p>
             </div>
 
-            {/* Theme toggle */}
+            {/* desktop Theme toggle */}
             <ThemeButton />
           </div>
 
