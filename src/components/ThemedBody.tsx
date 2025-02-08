@@ -3,7 +3,7 @@
 import React, { ReactNode } from "react";
 import { useThemeContext } from "./ThemeToggle";
 
-const ThemedBody = ({ children }: { children: ReactNode }) => {
+const ThemedBody = ({ children }: { children?: ReactNode }) => {
   const { isDarkMode } = useThemeContext();
 
   return (
