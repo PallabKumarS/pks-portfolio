@@ -20,10 +20,17 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   React.useEffect(() => {
-    // Update CSS variables based on the theme
+    //CSS variables based on the theme
     updateCSSVariables(isDarkMode);
 
-    // Add or remove the `dark` class for Tailwind CSS dark mode
+    // transition class
+    document.documentElement.style.setProperty(
+      "transition",
+      "all 0.7s ease-in-out"
+    );
+    document.body.style.setProperty("transition", "all 0.7s ease-in-out");
+
+    // Add or remove the `dark` class based on the theme
     if (isDarkMode) {
       document.documentElement.classList.add("dark");
     } else {

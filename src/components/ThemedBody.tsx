@@ -23,6 +23,8 @@ const ThemedBody = ({ children }: { children: ReactNode }) => {
           "--bg-mobile": `url(/mobileBackground.svg)`,
           "--bgDark-desktop": `url(/desktopBackgroundDark.svg)`,
           "--bgDark-mobile": `url(/mobileBackgroundDark.svg)`,
+          transition: "all 0.7s ease-in-out",
+          backgroundColor: isDarkMode ? "#08272C" : "#E8E8E8",
         } as React.CSSProperties
       }
     >
